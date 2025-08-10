@@ -2,7 +2,6 @@ import { Helmet } from "react-helmet-async";
 import { Button } from "@/components/ui/button";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Factory, Building2, Store, Home, Map, Hospital, Hotel, Mail, MapPin, Users, CheckCircle2 } from "lucide-react";
-import vastuMandala from "@/assets/vastu-purush-mandala.png";
 
 const Index = () => {
   const canonical = typeof window !== "undefined" ? window.location.href : "";
@@ -62,16 +61,7 @@ const Index = () => {
                 <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4" /> Transparent process and actionable reports</li>
               </ul>
             </div>
-<div className="aspect-[4/3] overflow-hidden rounded-lg border bg-card/50 flex items-center justify-center">
-  <img
-    src={vastuMandala}
-    alt="Vastu Purusha Mandala diagram — Vaastu Acceleron"
-    loading="lazy"
-    width={1024}
-    height={768}
-    className="h-full w-full object-contain"
-  />
-</div>
+            <div className="aspect-[4/3] rounded-lg border bg-card/50" aria-label="Vastu-balanced interior placeholder" />
           </div>
         </section>
 
