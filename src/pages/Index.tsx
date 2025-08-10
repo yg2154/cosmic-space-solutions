@@ -63,7 +63,7 @@ const Index = () => {
             </div>
             <figure className="relative aspect-[4/3] overflow-hidden rounded-lg border bg-card/50">
               <img
-                src="/lovable-uploads/4acfb64f-8ef4-4a82-aa88-5a7f02da068f.png"
+                src="/lovable-uploads/Vastu-Purusha-Mandala.png"
                 alt="Vastu Purusha Mandala grid diagram illustrating directional energies"
                 loading="lazy"
                 className="h-full w-full object-cover object-center scale-[1.15] select-none pointer-events-none"
