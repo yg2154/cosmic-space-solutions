@@ -61,19 +61,20 @@ const Index = () => {
                 <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4" /> Transparent process and actionable reports</li>
               </ul>
             </div>
-            <figure className="relative aspect-[4/3] overflow-hidden rounded-lg border bg-card/50">
-              <img
-                src="/lovable-uploads/4acfb64f-8ef4-4a82-aa88-5a7f02da068f.png"
-                alt="Vastu Purusha Mandala grid diagram illustrating directional energies"
-                loading="lazy"
-                className="h-full w-full object-cover object-center scale-[1.15] select-none pointer-events-none"
-              />
-              {/* Direction labels */}
-              <span aria-hidden className="absolute top-2 left-1/2 -translate-x-1/2 rounded border bg-background/80 px-2 py-0.5 text-sm md:text-base font-bold text-foreground">N</span>
-              <span aria-hidden className="absolute bottom-2 left-1/2 -translate-x-1/2 rounded border bg-background/80 px-2 py-0.5 text-sm md:text-base font-bold text-foreground">S</span>
-              <span aria-hidden className="absolute top-1/2 left-2 -translate-y-1/2 rounded border bg-background/80 px-2 py-0.5 text-sm md:text-base font-bold text-foreground">W</span>
-              <span aria-hidden className="absolute top-1/2 right-2 -translate-y-1/2 rounded border bg-background/80 px-2 py-0.5 text-sm md:text-base font-bold text-foreground">E</span>
-            </figure>
+            <div className="grid grid-cols-[auto_1fr_auto] grid-rows-[auto_1fr_auto] items-center gap-2">
+              <span className="col-start-2 row-start-1 justify-self-center text-sm md:text-base font-bold text-foreground">N</span>
+              <span className="col-start-1 row-start-2 justify-self-start text-sm md:text-base font-bold text-foreground">W</span>
+              <figure className="col-start-2 row-start-2 aspect-[4/3] overflow-hidden rounded-lg border bg-card/50">
+                <img
+                  src="/lovable-uploads/4acfb64f-8ef4-4a82-aa88-5a7f02da068f.png"
+                  alt="Vastu Purusha Mandala grid diagram illustrating directional energies"
+                  loading="lazy"
+                  className="h-full w-full object-contain"
+                />
+              </figure>
+              <span className="col-start-3 row-start-2 justify-self-end text-sm md:text-base font-bold text-foreground">E</span>
+              <span className="col-start-2 row-start-3 justify-self-center text-sm md:text-base font-bold text-foreground">S</span>
+            </div>
           </div>
         </section>
 
