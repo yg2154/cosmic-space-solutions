@@ -63,17 +63,19 @@ const Index = () => {
             </div>
             <figure className="relative aspect-[4/3] overflow-hidden rounded-lg border bg-card/50">
               <img
-                src="/lovable-uploads/4acfb64f-8ef4-4a82-aa88-5a7f02da068f.png"
+                src="/lovable-uploads/Vastu-Purusha-Mandala.png"
                 alt="Vastu Purusha Mandala grid diagram illustrating directional energies"
                 loading="lazy"
                 className="h-full w-full object-cover object-center scale-[1.15] select-none pointer-events-none"
               />
-              {/* Direction labels */}
-              <span aria-hidden className="absolute top-2 left-1/2 -translate-x-1/2 rounded border bg-background/80 px-2 py-0.5 text-sm md:text-base font-bold text-foreground">N</span>
-              <span aria-hidden className="absolute bottom-2 left-1/2 -translate-x-1/2 rounded border bg-background/80 px-2 py-0.5 text-sm md:text-base font-bold text-foreground">S</span>
-              <span aria-hidden className="absolute top-1/2 left-2 -translate-y-1/2 rounded border bg-background/80 px-2 py-0.5 text-sm md:text-base font-bold text-foreground">W</span>
-              <span aria-hidden className="absolute top-1/2 right-2 -translate-y-1/2 rounded border bg-background/80 px-2 py-0.5 text-sm md:text-base font-bold text-foreground">E</span>
             </figure>
+            {/* Direction labels positioned on the boundary */}
+            <div className="relative -mt-4">
+              <span aria-hidden className="absolute -top-6 left-1/2 -translate-x-1/2 rounded border bg-background px-2 py-0.5 text-sm md:text-base font-bold text-foreground shadow-sm">N</span>
+              <span aria-hidden className="absolute top-4 left-1/2 -translate-x-1/2 rounded border bg-background px-2 py-0.5 text-sm md:text-base font-bold text-foreground shadow-sm">S</span>
+              <span aria-hidden className="absolute -top-1 -left-6 -translate-y-1/2 rounded border bg-background px-2 py-0.5 text-sm md:text-base font-bold text-foreground shadow-sm">W</span>
+              <span aria-hidden className="absolute -top-1 -right-6 -translate-y-1/2 rounded border bg-background px-2 py-0.5 text-sm md:text-base font-bold text-foreground shadow-sm">E</span>
+            </div>
           </div>
         </section>
 
