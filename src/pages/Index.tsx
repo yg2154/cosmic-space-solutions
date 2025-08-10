@@ -61,7 +61,14 @@ const Index = () => {
                 <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4" /> Transparent process and actionable reports</li>
               </ul>
             </div>
-            <div className="aspect-[4/3] rounded-lg border bg-card/50" aria-label="Vastu-balanced interior placeholder" />
+            <figure className="aspect-[4/3] overflow-hidden rounded-lg border bg-card/50">
+              <img
+                src="/lovable-uploads/4acfb64f-8ef4-4a82-aa88-5a7f02da068f.png"
+                alt="Vastu Purusha Mandala grid diagram illustrating directional energies"
+                loading="lazy"
+                className="h-full w-full object-cover"
+              />
+            </figure>
           </div>
         </section>
 
