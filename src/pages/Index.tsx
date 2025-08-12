@@ -1,10 +1,69 @@
 import { Helmet } from "react-helmet-async";
 import { Button } from "@/components/ui/button";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Label } from "@/components/ui/label";
+import { useState } from "react";
 import { Factory, Building2, Store, Home, Map, Hospital, Hotel, Mail, MapPin, Users, CheckCircle2 } from "lucide-react";
 
 const Index = () => {
   const canonical = typeof window !== "undefined" ? window.location.href : "";
+  
+  // Form state
+  const [formData, setFormData] = useState({
+    name: '',
+    issue: '',
+    contact: '',
+    email: ''
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+
+  // Handle form submission
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus('idle');
+
+    try {
+      // Replace this URL with your Google Apps Script Web App URL
+      const GOOGLE_SCRIPT_URL = 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE';
+      
+      const submissionData = {
+        name: formData.name,
+        email: formData.email,
+        contact: formData.contact,
+        issue: formData.issue
+      };
+
+      const response = await fetch(GOOGLE_SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors', // Required for Google Apps Script
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(submissionData)
+      });
+
+      // Note: With no-cors mode, we can't read the response
+      // but if we reach this point, the request was sent
+      setSubmitStatus('success');
+      setFormData({ name: '', issue: '', contact: '', email: '' });
+      
+    } catch (error) {
+      console.error('Form submission error:', error);
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  // Handle input changes
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
   const orgJsonLd = {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
@@ -61,14 +120,22 @@ const Index = () => {
                 <li className="flex items-center gap-2"><CheckCircle2 className="h-4 w-4" /> Transparent process and actionable reports</li>
               </ul>
             </div>
-            <figure className="relative aspect-[4/3] overflow-hidden rounded-lg border bg-card/50">
-              <img
-                src="/lovable-uploads/Vastu-Purusha-Mandala.png"
-                alt="Vastu Purusha Mandala grid diagram illustrating directional energies"
-                loading="lazy"
-                className="h-full w-full object-contain object-center select-none pointer-events-none"
-              />
-            </figure>
+            <div className="relative">
+              {/* Directional Labels */}
+              <div className="absolute -top-8 left-1/2 transform -translate-x-1/2 text-xl font-semibold z-10">N</div>
+              <div className="absolute top-1/2 -right-8 transform -translate-y-1/2 text-xl font-semibold z-10">E</div>
+              <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 text-xl font-semibold z-10">S</div>
+              <div className="absolute top-1/2 -left-8 transform -translate-y-1/2 text-xl font-semibold z-10">W</div>
+              
+              <figure className="relative aspect-[4/3] overflow-hidden rounded-lg bg-card/50">
+                <img
+                  src="/lovable-uploads/Vastu-Purusha-Mandala.png"
+                  alt="Vastu Purusha Mandala grid diagram illustrating directional energies"
+                  loading="lazy"
+                  className="h-full w-full object-contain object-center select-none pointer-events-none"
+                />
+              </figure>
+            </div>
           </div>
         </section>
 
@@ -193,16 +260,120 @@ const Index = () => {
           </div>
         </section>
 
+        {/* Lead Capture Form */}
+        <section className="container mx-auto px-4 py-12 md:py-20">
+          <div className="max-w-2xl mx-auto">
+            <div className="text-center mb-8">
+              <h2 className="text-3xl md:text-4xl font-bold">Get Your Vastu Consultation</h2>
+              <p className="mt-4 text-lg text-muted-foreground">
+                Share your details and we'll help you transform your space with expert Vastu guidance.
+              </p>
+            </div>
+            
+            <div className="rounded-lg border p-6 md:p-8 bg-card">
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div className="space-y-2">
+                    <Label htmlFor="name">Full Name *</Label>
+                    <Input
+                      id="name"
+                      name="name"
+                      type="text"
+                      value={formData.name}
+                      onChange={handleInputChange}
+                      placeholder="Enter your full name"
+                      required
+                    />
+                  </div>
+                  
+                  <div className="space-y-2">
+                    <Label htmlFor="contact">Contact Number *</Label>
+                    <Input
+                      id="contact"
+                      name="contact"
+                      type="tel"
+                      value={formData.contact}
+                      onChange={handleInputChange}
+                      placeholder="Enter your contact number"
+                      required
+                    />
+                  </div>
+                </div>
+                
+                <div className="space-y-2">
+                  <Label htmlFor="email">Email Address *</Label>
+                  <Input
+                    id="email"
+                    name="email"
+                    type="email"
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    placeholder="Enter your email address"
+                    required
+                  />
+                </div>
+                
+                <div className="space-y-2">
+                  <Label htmlFor="issue">Describe Your Issue/Requirement *</Label>
+                  <Textarea
+                    id="issue"
+                    name="issue"
+                    value={formData.issue}
+                    onChange={handleInputChange}
+                    placeholder="Please describe your space, current issues, or what you'd like to achieve with Vastu consultation..."
+                    className="min-h-[120px]"
+                    required
+                  />
+                </div>
+                
+                {submitStatus === 'success' && (
+                  <div className="flex items-center gap-2 text-green-600 bg-green-50 p-3 rounded-md">
+                    <CheckCircle2 className="h-5 w-5" />
+                    <span>Thank you! We'll contact you soon to discuss your Vastu consultation.</span>
+                  </div>
+                )}
+                
+                {submitStatus === 'error' && (
+                  <div className="text-red-600 bg-red-50 p-3 rounded-md">
+                    <span>Something went wrong. Please try again or contact us directly.</span>
+                  </div>
+                )}
+                
+                <Button 
+                  type="submit" 
+                  size="lg" 
+                  className="w-full"
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? 'Submitting...' : 'Submit Consultation Request'}
+                </Button>
+                
+                <p className="text-sm text-muted-foreground text-center">
+                  We respect your privacy and will never share your information with third parties.
+                </p>
+              </form>
+            </div>
+          </div>
+        </section>
+
         <section id="contact" className="container mx-auto px-4 pb-16 md:pb-24">
           <div className="rounded-lg border p-6 md:p-8 bg-card">
             <div className="md:flex items-center justify-between gap-6">
               <div className="md:max-w-2xl">
                 <h3 className="text-xl md:text-2xl font-semibold">Start your Vastu journey</h3>
                 <p className="mt-2 text-muted-foreground">Ready to optimize your space? Book a session and receive a clear, actionable plan tailored to your goals.</p>
+                <div className="mt-4 space-y-2">
+                  <p className="text-sm text-muted-foreground">
+                    Email: <a href="mailto:sanjeevvmahajan@vaastuacceleron.com" className="text-blue-600 underline hover:text-blue-800 transition-colors">sanjeevvmahajan@vaastuacceleron.com</a>
+                  </p>
+                  <p className="text-sm text-muted-foreground">
+                    Mobile: <a href="tel:+919660515666" className="text-blue-600 underline hover:text-blue-800 transition-colors">9660515666</a>
+                  </p>
+                </div>
               </div>
               <div className="mt-4 md:mt-0 flex gap-3">
                 <a href="#consultation"><Button size="lg">Book Now</Button></a>
-                <a href="mailto:info@vaastuacceleron.com"><Button variant="secondary" size="lg">Email Us</Button></a>
+                <a href="mailto:sanjeevvmahajan@vaastuacceleron.com"><Button variant="secondary" size="lg">Email Us</Button></a>
               </div>
             </div>
           </div>
