@@ -28,7 +28,7 @@ const Index = () => {
 
     try {
       // Replace this URL with your Google Apps Script Web App URL
-      const GOOGLE_SCRIPT_URL = 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE';
+      const GOOGLE_SCRIPT_URL = 'https://script.google.com/a/macros/vaastuacceleron.com/s/AKfycbysowBaLsvWG4f3AFeusg9A9wp4Vh2cxMRgcqc9WbhkRVr6ZhFlM_JAfwilvpzkF1e7/exec';
       
       const submissionData = {
         name: formData.name,
