@@ -82,10 +82,10 @@ const Index = () => {
     <>
       <Helmet>
         <title>Vaastu Acceleron | Vastu Consultant Services</title>
-        <meta name="description" content="Expert Vastu consultant for homes, offices, factories, hospitals, hotels, plots and shops. Email, on-site and walk-in consultations." />
+        <meta name="description" content="Expert Vaastu consultancy services for homes, offices, factories, hospitals, hotels, plots and shops. Email, on-site and walk-in consultations." />
         <link rel="canonical" href={canonical || "/"} />
-        <meta property="og:title" content="Vaastu Acceleron | Vastu Consultant" />
-        <meta property="og:description" content="Holistic Vastu guidance for residences and businesses. Email, on-site and walk-in consultations." />
+        <meta property="og:title" content="Vaastu Acceleron | Expert Vaastu Consultancy Services" />
+        <meta property="og:description" content="Expert Vaastu consultancy services providing holistic guidance for residences and businesses. Email, on-site and walk-in consultations." />
         <script type="application/ld+json">{JSON.stringify(orgJsonLd)}</script>
       </Helmet>
 
@@ -108,7 +108,7 @@ const Index = () => {
         <section className="container mx-auto px-4 py-16 md:py-24">
           <div className="grid md:grid-cols-2 gap-10 items-center">
             <div>
-              <h1 className="text-4xl md:text-5xl font-bold leading-tight">Vaastu Acceleron — Expert Vastu Consultant</h1>
+              <h1 className="text-4xl md:text-5xl font-bold leading-tight">Vaastu Acceleron — Expert Vaastu Consultancy Services</h1>
               <p className="mt-4 text-lg text-muted-foreground">Holistic, practical Vastu guidance for homes and businesses to harmonize spaces, optimize energy flow, and support wellbeing, prosperity, and growth.</p>
               <div className="mt-6 flex flex-wrap gap-3">
                 <a href="#consultation"><Button size="lg">Book a Consultation</Button></a>
